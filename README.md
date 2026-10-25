@@ -15,3 +15,8 @@ Send OneBot (QQ) notifications about new discussions and replies on your Flarum 
 ```bash
 composer require tacraft-sociality/flarum-onebot-notify
 php flarum cache:clear
+```
+
+## Links
+
+- [Packagist](https://packagist.org/packages/tacraft-sociality/flarum-onebot-notify)
