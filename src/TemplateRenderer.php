@@ -11,7 +11,17 @@ final class TemplateRenderer
 
     public static function excerpt(?string $text, int $length = 200): string
     {
-        $text = strip_tags((string) $text);
+        $text = (string) $text;
+
+        $text = preg_replace('/\[upl-image-preview[^\]]*\]/i', '[图片]', $text);
+        $text = preg_replace('/\[upl-file[^\]]*\]/i', '[附件]', $text);
+
+        $text = preg_replace('/\[img[^\]]*\].*?\[\/img\]/is', '[图片]', $text);
+        $text = preg_replace('/\[url=[^\]]*\](.*?)\[\/url\]/is', '$1', $text);
+
+        $text = preg_replace('/\[[a-zA-Z][^\]]*\]/', '', $text);
+
+        $text = strip_tags($text);
         $text = preg_replace('/\s+/u', ' ', trim($text)) ?? '';
 
         if (mb_strlen($text) <= $length) {
